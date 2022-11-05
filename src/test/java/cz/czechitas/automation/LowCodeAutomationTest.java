@@ -58,4 +58,31 @@ založení přihlášky.*/
         prohlizec.klikniNaVytvoritPrihlasku();
     }
 
+/*Ověřte, že na úvodní stránce se nachází „dlaždice“ Programování.*/
+    @Test
+    void overDlazdiceProgramovani () {
+        overeni.overExistenciDlazdiceProgramovani();
+    }
+
+/*Ověřte, že pokud jde uživatel do sekce pro vytváření přihlášky pro rodiče (Pro rodiče
+-> Vytvořit přihlášku) a není přihlášen, je na obrazovce k dispozici tlačítko pro
+    registraci.*/
+    @Test
+    void overTlacitkoProRegistraci() {
+        prohlizec.jdiDoSekceVytvorPrihlaskuProRodice();
+        overeni.overPritomnostTlacitkaZaregistrujteSe();
+    }
+
+/*Napište test, který provede přihlášení Vámi založeným uživatelem, otevře detail
+    první přihlášky v seznamu přihlášek a zkontroluje, že způsob úhrady odpovídá
+    způsobu úhrady, který jste zadali při jejím zakládání*/
+    @Test
+    void otevriDetailPrvniPrihlasky() {
+        prohlizec.klikniNaTlacitkoPrihlasit();
+        prohlizec.vyplnEmail("carevna@email.com");
+        prohlizec.vyplnHeslo("Rusko1729");
+        prohlizec.provedPrihlaseni();
+        prohlizec.otevriDetailPrvniPrihlasky();
+        overeni.overZpusobUhradyPrihlasky("Hotově");
+    }
 }
